@@ -39,7 +39,7 @@ font-family: 'Dosis', sans-serif;
 
 ## Wireframe the UI
 
-! [My wireframe pic](IMG_0382.png)
+![My wireframe pic](IMG_0382.png)
 
 
 ## Pseudocode
