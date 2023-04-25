@@ -21,11 +21,23 @@ const userInputSection = document.getElementById('user-input-section');
 const canvas = document.getElementById('canvas');
 const resultText = document.getElementById('result-text');
 const playAgainButton = document.getElementById('play-again-button');
+const letterButtonsEl = document.querySelector('#letter-container');
 
 
 /*----- event listeners -----*/
 playAgainButton.addEventListener('click', init)
+// document.querySelector('letter-container').addEventListener('click', checkLetter)
 // letter.addEventListener('click', )
+// letterButtonsEl.addEventListener('click',function() {
+//     console.log('letters')
+// })//checkLetter)
+letterButtonsEl.addEventListener('click', function(event) {
+    const buttonValue = event.target.textContent;
+  
+    console.log('Button clicked:', buttonValue);
+  });
+
+
 
 // /*----- functions -----*/
 init()
@@ -60,9 +72,10 @@ function init(){
 //     userInputSection.innerHTML = displayItem;
 
 // player only has 5 tries 
+//if letter clicked is present in the word (e.target) from the clicked letter
 function checkLetter () {
     while (count < 5) {
-        // update secret word board array with player's move if the letter word is correct
+        // update display word array with player's move if the letter word is correct
         // let letter = key.target;
         for ( var j = 0; j < secretWord.length; j++ ) {
             // if the letter is in the word
@@ -71,7 +84,7 @@ function checkLetter () {
                 displayWord[j] = letter;
                 winCount +=1;
                 if (winCount === secretWord.length) {
-                    resultText.innerHTML = `<h2 class="winner-message">Good job! Med school awaits!</h2>`;
+                    resultText.innerHTML = `Good job! We have a future healthcare professional here!!!`;
                 }
             } else {
                 // add a strike
@@ -80,22 +93,5 @@ function checkLetter () {
         }
         }
 }
-// while (count < 5) {
-// // update secret word board array with player's move if the letter word is correct
-// // let letter = key.target;
-// for ( var j = 0; j < secretWord.length; j++ ) {
-//     // if the letter is in the word
-//     if (secretWord[j] === letter) {
-//         // update the displayWord
-//         displayWord[j] = letter;
-//         winCount +=1;
-//         if (winCount === secretWord.length) {
-//             resultText.innerHTML = `<h2 class="winner-message">Good job! Med school awaits!</h2>`;
-//         }
-//     } else {
-//         // add a strike
-//         count += 1;
-//     }
-// }
-// }
+
 // Re-render the alphabet board with the player move (grey out the letter)
