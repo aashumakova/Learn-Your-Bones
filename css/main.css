@@ -1,3 +1,64 @@
 body {
     font-family: 'Dosis', sans-serif;
+    background-color: mediumaquamarine;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+header {
+    font-size: 28x;
+    text-align: center;
+    top: 50%;
+}
+
+.container {
+    background-color: lightgray;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 90vm;
+    padding: 3vm;
+    border-radius: 2%;
+    font-size: 14px;    
+}
+#words-container{
+    text-align: center;
+
+}
+
+#words-container div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#words-container button {
+    
+}
+
+
+
+#letter-container{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    gap: 0.5em;
+}
+
+
+#user-input-section{
+    display: flex;
+    justify-content: center;
+    font-size: 10px
+}
+
+#result-text{
+
+}
+
+#play-again-button{
+
 }

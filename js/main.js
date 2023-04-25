@@ -40,6 +40,26 @@ letterButtonsEl.addEventListener('click', function(event) {
 
 
 // /*----- functions -----*/
+// function displayWordOptions () {
+//     // need a function to pull each item word category aka a key from the object
+//     words.forEach(function(wordCategories) {
+//     const wordCategoriesEl = document.createElement('p');
+//     wordCategoriesEl.textContent = wordCategories.text;
+//     wordsContainer.appendChild(wordCategoriesEl);
+//     });
+// }
+
+function displayWordOptions () {
+    let wordCategories = Object.keys(words);
+    console.log(wordCategories)
+    wordCategories.forEach(function(wordCategory){
+    let wordCategoriesButton = document.createElement('div');
+    wordCategoriesButton.innerHTML = wordCategory;
+    wordsContainer.appendChild(wordCategoriesButton);
+    })
+}
+displayWordOptions()
+
 init()
 
 function init(){
@@ -54,11 +74,19 @@ function init(){
     secretWord = wordArray[Math.floor(Math.random() * wordArray.length)];
     console.log(secretWord)
 //update the input section to show empty slots for each letter
+    // function createDisplayWord(){}
     let displayWord = [];
     for ( let i = 0; i < secretWord.length; i++) {
         displayWord[i] = 'x';
     }
     console.log(displayWord)
+
+    displayWord.forEach(function(letterSlot) {
+    let letterSlotSpot = document.createElement('p');
+    letterSlotSpot.innerHTML = letterSlot;
+    userInputSection.appendChild(letterSlotSpot);
+    }
+    )
 }
     //update the input section to show empty slots for each letter
     // let displayWord = secretWord.split('').map(function(char) {
@@ -76,7 +104,6 @@ function init(){
 function checkLetter () {
     while (count < 5) {
         // update display word array with player's move if the letter word is correct
-        // let letter = key.target;
         for ( var j = 0; j < secretWord.length; j++ ) {
             // if the letter is in the word
             if (secretWord[j] === letter) {
@@ -93,5 +120,3 @@ function checkLetter () {
         }
         }
 }
-
-// Re-render the alphabet board with the player move (grey out the letter)
