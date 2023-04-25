@@ -27,30 +27,44 @@ const letterButtonsEl = document.querySelector('#letter-container');
 
 /*----- event listeners -----*/
 playAgainButton.addEventListener('click', init)
+
 letterButtonsEl.addEventListener('click', function(event) {
     const buttonValue = event.target.textContent;
-  
+    event.target.disabled = 'true';
     console.log('Button clicked:', buttonValue);
   });
 wordCategoriesButton.addEventListener('click', function (event) {
     const categoryValue = event.target.textContent;
+    event.target.disabled = 'true';
     console.log('Category button clicked:', categoryValue);
 })
 
 
 // /*----- functions -----*/
 // need a function to pull each item word category aka a key from the object onto the game board   
+// function displayWordOptions () {
+//     wordsContainer.innerHTML +=`<h1>Select your body parts</h1>`;
+//     let wordCategories = Object.keys(words);
+//     console.log(wordCategories)
+//     wordCategories.forEach(function(wordCategory){
+//     let wordCategoriesButton = document.createElement('div');
+//     wordCategoriesButton.innerHTML = wordCategory;
+//     wordsContainer.appendChild(wordCategoriesButton);
+//     })
+// }
+// displayWordOptions()
+
 function displayWordOptions () {
-    wordsContainer.innerHTML +=`<h1>Select your body parts</h1>`;
-    let wordCategories = Object.keys(words);
-    console.log(wordCategories)
-    wordCategories.forEach(function(wordCategory){
-    let wordCategoriesButton = document.createElement('div');
-    wordCategoriesButton.innerHTML = wordCategory;
-    wordsContainer.appendChild(wordCategoriesButton);
-    })
-}
-displayWordOptions()
+        wordsContainer.innerHTML +=`<h1>Select your body parts</h1>`;
+        let wordCategories = Object.keys(words);
+        console.log(wordCategories)
+        wordCategories.forEach(function(wordCategory){
+        let wordCategoriesButton = document.createElement('div');
+        wordCategoriesButton.innerHTML += `<button class="options">${wordCategory}</button>`;
+        wordsContainer.appendChild(wordCategoriesButton);
+        })
+    }
+    displayWordOptions()
 
 init()
 
@@ -75,12 +89,7 @@ function init() {
     }
     )
 }
-    //update the input section to show empty slots for each letter
-    // let displayWord = secretWord.split('').map(function(char) {
-    //     return '<span class="dashes"></span>';
-    //   }).join('');
-    //   userInputSection.innerHTML = displayItem;
-    //   console.log(displayItem)
+//update the input section to show empty slots for each letter
 // let displayWord = secretWord.split('').map(function(char) {
 //     return '';
 //     }).join('');
