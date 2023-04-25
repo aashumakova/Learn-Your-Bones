@@ -16,6 +16,7 @@ let winCount = 0;
 
 /*----- cached element references -----*/
 const wordsContainer = document.getElementById('words-container');
+const wordCategoriesButton = document.getElementById('words-container');
 const letterContainer = document.getElementById('letter-container');
 const userInputSection = document.getElementById('user-input-section');
 const canvas = document.getElementById('canvas');
@@ -26,17 +27,15 @@ const letterButtonsEl = document.querySelector('#letter-container');
 
 /*----- event listeners -----*/
 playAgainButton.addEventListener('click', init)
-// document.querySelector('letter-container').addEventListener('click', checkLetter)
-// letter.addEventListener('click', )
-// letterButtonsEl.addEventListener('click',function() {
-//     console.log('letters')
-// })//checkLetter)
 letterButtonsEl.addEventListener('click', function(event) {
     const buttonValue = event.target.textContent;
   
     console.log('Button clicked:', buttonValue);
   });
-
+wordCategoriesButton.addEventListener('click', function (event) {
+    const categoryValue = event.target.textContent;
+    console.log('Category button clicked:', categoryValue);
+})
 
 
 // /*----- functions -----*/
@@ -62,13 +61,7 @@ displayWordOptions()
 
 init()
 
-function init(){
-// 4.1) Initialize the stated variables
-// - Secret word board is empty
-// - Skeleton picture is all ready
-// - Alphabet board is greyed out
-// - The turn variable should be set to null since the player hasn't made any clicks yet 
-
+function init() {
 // computer generates a random word
     const wordArray = words.arm;
     secretWord = wordArray[Math.floor(Math.random() * wordArray.length)];
