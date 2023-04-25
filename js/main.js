@@ -39,16 +39,9 @@ wordCategoriesButton.addEventListener('click', function (event) {
 
 
 // /*----- functions -----*/
-// function displayWordOptions () {
-//     // need a function to pull each item word category aka a key from the object
-//     words.forEach(function(wordCategories) {
-//     const wordCategoriesEl = document.createElement('p');
-//     wordCategoriesEl.textContent = wordCategories.text;
-//     wordsContainer.appendChild(wordCategoriesEl);
-//     });
-// }
-
+// need a function to pull each item word category aka a key from the object onto the game board   
 function displayWordOptions () {
+    wordsContainer.innerHTML +=`<h1>Select your body parts</h1>`;
     let wordCategories = Object.keys(words);
     console.log(wordCategories)
     wordCategories.forEach(function(wordCategory){
@@ -64,6 +57,7 @@ init()
 function init() {
 // computer generates a random word
     const wordArray = words.arm;
+    // const wordArray = categoryValue;
     secretWord = wordArray[Math.floor(Math.random() * wordArray.length)];
     console.log(secretWord)
 //update the input section to show empty slots for each letter
