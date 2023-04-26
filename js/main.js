@@ -20,7 +20,7 @@ const wordsContainer = document.getElementById('words-container');
 const wordCategoriesButton = document.getElementById('words-container');
 const letterContainer = document.getElementById('letter-container');
 const userInputSection = document.getElementById('user-input-section');
-const canvas = document.getElementById('canvas');
+// const canvas = document.getElementById('canvas');
 const resultText = document.getElementById('result-text');
 const playAgainButton = document.getElementById('play-again-button');
 const letterButtonsEl = document.querySelector('#letter-container');
@@ -31,9 +31,10 @@ playAgainButton.addEventListener('click', init)
 
 wordCategoriesButton.addEventListener('click', function (event) {
     const categoryValue = event.target.textContent;
-    event.target.disabled = 'true';
+    // event.target.disabled = 'true';
     const wordArray = words[categoryValue];
     secretWord = wordArray[Math.floor(Math.random() * wordArray.length)];
+    event.target.disabled = 'true';
     console.log(secretWord)
     // console.log('Category button clicked:', categoryValue);
      //function createDisplayWord(){
@@ -58,69 +59,42 @@ letterButtonsEl.addEventListener('click', function(event) {
     console.log('Button clicked:', letter);
     // const letter = buttonValue;
     // displayWordSplit = displayWord.split('');
-    //function checkLetter () {
-        // while (count < 5) {
-        //     // update display word array with player's move if the letter word is correct
-        //     for ( var j = 0; j < secretWord.length; j++ ) {
-        //         // if the letter is in the word
-        //         if (secretWord[j] === letter) {
-        //             // update the displayWord
-        //             displayWord[j] = letter;
-        //             winCount +=1;
-        //             if (winCount === secretWord.length) {
-        //                 resultText.innerHTML = `Good job! We have a future healthcare professional here!!!`;
-        //             }
-        //         } else {
-        //             // add a strike
-        //             count += 1;
-        //         }
-        //     }
-        //     }
-   //}
-   if (secretWord.includes(letter)) {
-    for ( var j = 0; j < secretWord.length; j++ ) {
-        if (secretWord[j] === letter) {
-            // update the displayWord
-            displayWord[j] = letter;
-            winCount +=1;
-            if (winCount === secretWord.length) {
-                resultText.innerHTML = `Good job! We have a future healthcare professional here!!!`;
+    checkLetter (letter, displayWord)
+    })
+    function checkLetter (letter, displayWord) {
+        while (count < 5) {
+            // update display word array with player's move if the letter word is correct
+            for ( var j = 0; j < secretWord.length; j++ ) {
+                // if the letter is in the word
+                console.log(j);
+                console.log(letter);
+                console.log(secretWord[j]);
+                if (secretWord[j] === letter) {
+                    // update the displayWord
+                    console.log(displayWord[j]);
+                    displayWord[j] = letter;
+                    winCount +=1;
+                    if (winCount === secretWord.length) {
+                        resultText.innerHTML = `Good job! We have a future healthcare professional here!!!`;
+                    }
+                } else {
+                    // add a strike
+                    count += 1;
+                }
             }
-        } else {
-            // add a strike
-            count += 1;
-        }
-    }
+            }
    }
-
-
-  });
-// wordCategoriesButton.addEventListener('click', function (event) {
-//     const categoryValue = event.target.textContent;
-//     event.target.disabled = 'true';
-//     const wordArray = words[categoryValue];
-//     secretWord = wordArray[Math.floor(Math.random() * wordArray.length)];
-//     console.log(secretWord)
-//     // console.log('Category button clicked:', categoryValue);
-//      //function createDisplayWord(){
-//             // let displayWord = [];
-//             for ( let i = 0; i < secretWord.length; i++) {
-//                 displayWord[i] = 'x';
-//             }
-//             console.log(displayWord)
-        
-//             displayWord.forEach(function(letterSlot) {
-//             let letterSlotSpot = document.createElement('p');
-//             letterSlotSpot.innerHTML = letterSlot;
-//             userInputSection.appendChild(letterSlotSpot);
-//             }
-//             )
-//         //}
-// })
-
 
 // /*----- functions -----*/
 // need a function to pull each item word category aka a key from the object onto the game board   
+init()
+
+function init() {
+    count = 0;
+    winCount = 0;
+    displayWord = [];
+}
+
 function displayWordOptions () {
         wordsContainer.innerHTML +=`<h1>Select your body parts</h1>`;
         let wordCategories = Object.keys(words);
@@ -133,10 +107,6 @@ function displayWordOptions () {
     }
     displayWordOptions()
 
-init()
-
-function init() {
-}
 
 // player only has 5 tries 
 //if letter clicked is present in the word (e.target) from the clicked letter

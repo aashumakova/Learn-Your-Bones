@@ -23,20 +23,31 @@ h1 {
     width: 90vm;
     padding: 3vm;
     border-radius: 2%;
-    font-size: 14px;    
+    font-size: 14px; 
 }
-#words-container{
+
+h1 {
     text-align: center;
 }
+/* #words-container{
+    text-align: center;
+    
+} */
 
-#words-container>div {
+#words-container div {
     width: 100%;
     display: flex;
-    justify-content: space-around;
-    font-size: 1.2em;
+    flex-direction: column;
+    font-size: 1.2em 0 2.4em 0;
 }
 
-#words-container>button {
+#words-container button {
+    text-transform: capitalize;
+    border: 1px solid darkgrey;
+    background-color: whitesmoke; 
+    color: black;
+    border-radius: 0.2em;
+    padding: 1.5em 2em; 
     
 }
 
@@ -48,21 +59,30 @@ h1 {
     flex-wrap: wrap;
     justify-content: center; 
     gap: 0.5em;
+    padding: 1em;
+}
+
+#letter-container button {
+    height: 2.4em;
+    width: 2.4em;
 }
 
 
 #user-input-section{
     display: flex;
     justify-content: center;
-    font-size: 2em;
+    font-size: 3em;
 }
 
 #result-text{
 
 }
 
-button>#play-again-button {
+button>#play-again {
     text-align: center; 
-    font-size: 10px;
+    /* font-size: 18px; */
     border-radius: 3%;
+    margin: 2em;
+    padding: 0.5em;
+    border: 0.5em solid darkgray;
 }
