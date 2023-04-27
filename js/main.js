@@ -12,6 +12,7 @@ let count = 0;
 let inputSection = '';
 let winCount = 0;
 let displayWord = [];
+let displayString = '';
 // let displayWordOptions = [];
 // let letterSlotSpot = [];
 
@@ -26,10 +27,16 @@ const userInputSection = document.getElementById('user-input-section');
 const resultText = document.getElementById('result-text');
 const playAgainButton = document.getElementById('play-again-button');
 const letterButtonsEl = document.querySelector('#letter-container');
+// const letterButtonEls = [...document.querySelectorAll('#letter-container')];
 
 
 /*----- event listeners -----*/
-playAgainButton.addEventListener('click', init)
+playAgainButton.addEventListener('click', function(){
+    window.location.reload();
+}
+)
+// playAgainButton.addEventListener('click', init)
+
 
 wordCategoriesButton.addEventListener('click', generateWordArray) //{
     //const categoryValue = event.target.textContent;
@@ -74,12 +81,15 @@ function createDisplayWord(){
             }
             console.log(displayWord)
         
-            displayWord.forEach(function(letterSlot) {
-            let letterSlotSpot = document.createElement('p');
-            letterSlotSpot.innerHTML = letterSlot;
-            userInputSection.appendChild(letterSlotSpot);
-            }
-            )
+            displayString = displayWord.join(' ');
+            console.log(displayString);
+            userInputSection.innerHTML = displayString;
+            // displayWord.forEach(function(letterSlot) {
+            // let letterSlotSpot = document.createElement('p');
+            // letterSlotSpot.innerHTML = letterSlot;
+            // userInputSection.appendChild(letterSlotSpot);
+            // }
+            //)
             renderLetters()
         }
 
@@ -92,80 +102,50 @@ letterButtonsEl.addEventListener('click', function(event) {
     checkLetter (letter, secretWord)
     })
 
+    // loop through all the letterButtonEls 
+    // for each element to take element and make .disabled = 'false'
+    // inside of init
+
 function renderLetters() {
 letterButtonsEl.style.visibility = secretWord ? 'visible' : 'hidden';
 }
 
 function checkLetter (letter, secretWord) {
-        if (secretWord.includes(letter)) {
-            for ( var j = 0; j < secretWord.length; j++ ) {
-                // if the letter is in the word
-                console.log(j);
-                console.log(letter);
-                console.log(secretWord[j]);
-                console.log(secretWord)
-                if (secretWord[j] === letter) {
-                    // update the displayWord
-                    displayWord.splice(j, 1, letter);
-                    console.log(displayWord);
-                    // const updatedDisplay = displayWord.replacewith(displayWord.splice(j, 1, letter));
-                    // const letterSlotSpot = document.getElementsByTagName('p').reset();
-                    displayWord.forEach(function(letterSlot) {
-                    let letterSlotSpot = document.createElement('p');
-                    letterSlotSpot.innerHTML = letterSlot;
-                    userInputSection.appendChild(letterSlotSpot);
-                    });
-
-                    winCount +=1;
-                    console.log(winCount, 'win count');
-                    if (winCount === secretWord.length) {
-                        resultText.innerHTML = `Good job! We have a future healthcare professional here!!!`;
-                    }
-                }
-                } 
-        } else {
+    if (secretWord.includes(letter)) {
+    for ( var j = 0; j < secretWord.length; j++ ) {
+    // if the letter is in the word
+    console.log(j);
+    console.log(letter);
+    console.log(secretWord[j]);
+    console.log(secretWord)
+    if (secretWord[j] === letter) {
+    // update the displayWord
+        displayWord.splice(j, 1, letter);
+        console.log(displayWord);
+        displayString = displayWord.join(' ');
+        console.log(displayString);
+        userInputSection.innerHTML = displayString;
+        winCount +=1;
+    }
+    //winCount +=1;
+    console.log(winCount, 'win count');
+    if (winCount === secretWord.length) {
+    resultText.innerHTML = `Good job! We have a future healthcare professional here!!!`;
+    }
+    // if (displayString === secretWord.length) {
+    //     resultText.innerHTML = `Good job!`;
+    // }
+    }
+    } else {
         count +=1;
         console.log(count, 'count');
         }
 
-            // update display word array with player's move if the letter word is correct
-            // for ( var j = 0; j < secretWord.length; j++ ) {
-            //     // if the letter is in the word
-            //     console.log(j);
-            //     console.log(letter);
-            //     console.log(secretWord[j]);
-            //     console.log(secretWord)
-            //     if (secretWord[j] === letter) {
-            //         // update the displayWord
-            //         displayWord.splice(j, 1, letter);
-            //         console.log(displayWord);
-            //         // const updatedDisplay = displayWord.replacewith(displayWord.splice(j, 1, letter));
-            //         // const letterSlotSpot = document.getElementsByTagName('p').reset();
-            //         displayWord.forEach(function(letterSlot) {
-            //         let letterSlotSpot = document.createElement('p');
-            //         letterSlotSpot.innerHTML = letterSlot;
-            //         userInputSection.appendChild(letterSlotSpot);
-            //         });
-
-            //         winCount +=1;
-            //         console.log(winCount, 'win count');
-            //         if (winCount === secretWord.length) {
-            //             resultText.innerHTML = `Good job! We have a future healthcare professional here!!!`;
-            //         }
-            //     } 
-            //     //else {
-            //         // add a strike
-            //         // count +=1;
-            //         // console.log(count, 'count');
-            //         // count ++;
-            //     //}
-            //     } 
-                // count +=1;
-                //     console.log(count, 'count');
+            
 checkEndOfGame()
 }
 
- function checkEndOfGame(){
+function checkEndOfGame(){
     if (count === 5) {
         // game ends
         resultText.innerHTML = `Keep on studying. You can do it!`;
@@ -181,17 +161,27 @@ function init() {
     winCount = 0;
     secretWord = '';
     displayWord = [];
+    userInputSection.innerHTML = '';
     // let displayWordOptions = [];
     // let letterSlotSpot = [];
-    renderLetters(); 
+    // renderLetters(); 
     resultText.innerHTML = '';
-    // checkEndOfGame();
-}
+    renderLetters();
+    // checkEndOfGame(); 
+    // const markerEls = [...document.querySelectorAll('#markers > div')]
+    // const letterButtonEls = [...document.querySelectorAll('#letter-container')]
+    // letterButtonsEl.forEach(function(letterButton) {
+    // letterButton.disabled = 'false';
+    // });   
+    // loop through all the letterButtonEls
+    // letterButtonsEl.forEach((letterButton) => {
+    //     letterButton.disabled = 'false';
 
-// function playAgain(){
-//     // display word is reset
-//     // alphabet disappears
-// }
+    // }) 
+    // for each element to take element and make .disabled = 'false'
+    // inside of init
+
+}
 function displayWordOptions () {
         wordsContainer.innerHTML +=`<h1>Select your body parts</h1>`;
         let wordCategories = Object.keys(words);
