@@ -12,6 +12,8 @@ let count = 0;
 let inputSection = '';
 let winCount = 0;
 let displayWord = [];
+// let displayWordOptions = [];
+// let letterSlotSpot = [];
 
 
 
@@ -29,14 +31,14 @@ const letterButtonsEl = document.querySelector('#letter-container');
 /*----- event listeners -----*/
 playAgainButton.addEventListener('click', init)
 
-wordCategoriesButton.addEventListener('click', function (event) {
-    const categoryValue = event.target.textContent;
+wordCategoriesButton.addEventListener('click', generateWordArray) //{
+    //const categoryValue = event.target.textContent;
     // event.target.disabled = 'true';
-    const wordArray = words[categoryValue];
-    secretWord = wordArray[Math.floor(Math.random() * wordArray.length)].toUpperCase();
-    event.target.disabled = 'true';
-    console.log(secretWord)
-    createDisplayWord()
+    // const wordArray = words[categoryValue];
+    // secretWord = wordArray[Math.floor(Math.random() * wordArray.length)].toUpperCase();
+    // event.target.disabled = 'true';
+    // console.log(secretWord)
+    //createDisplayWord()
     // console.log('Category button clicked:', categoryValue);
     //  //function createDisplayWord(){
     //         // let displayWord = [];
@@ -53,7 +55,17 @@ wordCategoriesButton.addEventListener('click', function (event) {
             // )
             // renderLetters()
     //     //}
-})
+//}
+// )
+
+function generateWordArray (){
+    const categoryValue = event.target.textContent;
+    const wordArray = words[categoryValue];
+    secretWord = wordArray[Math.floor(Math.random() * wordArray.length)].toUpperCase();
+    event.target.disabled = 'true';
+    console.log(secretWord);
+    createDisplayWord()
+}
 
 function createDisplayWord(){
             // let displayWord = [];
@@ -85,8 +97,6 @@ letterButtonsEl.style.visibility = secretWord ? 'visible' : 'hidden';
 }
 
 function checkLetter (letter, secretWord) {
-        // let count = 0;
-        //while (count <= 5) {]
         if (secretWord.includes(letter)) {
             for ( var j = 0; j < secretWord.length; j++ ) {
                 // if the letter is in the word
@@ -111,13 +121,7 @@ function checkLetter (letter, secretWord) {
                     if (winCount === secretWord.length) {
                         resultText.innerHTML = `Good job! We have a future healthcare professional here!!!`;
                     }
-                } 
-                //else {
-                    // add a strike
-                    // count +=1;
-                    // console.log(count, 'count');
-                    // count ++;
-                //}
+                }
                 } 
         } else {
         count +=1;
@@ -167,17 +171,7 @@ checkEndOfGame()
         resultText.innerHTML = `Keep on studying. You can do it!`;
         return
      }
-    // if (winCount === secretWord.length) {
-    //     resultText.innerHTML = `Good job! We have a future healthcare professional here!!!`;
-    //     return
-    // }
-    // if (count === 5) {
-    //     // game ends
-    //     resultText.innerHTML = `Keep on studying. You can do it!`;
-    //  }
  }
-
-// console.log(count, winCount)
 // /*----- functions -----*/
 // need a function to pull each item word category aka a key from the object onto the game board   
 init()
@@ -185,10 +179,19 @@ init()
 function init() {
     count = 0;
     winCount = 0;
+    secretWord = '';
     displayWord = [];
-    renderLetters()
+    // let displayWordOptions = [];
+    // let letterSlotSpot = [];
+    renderLetters(); 
+    resultText.innerHTML = '';
+    // checkEndOfGame();
 }
 
+// function playAgain(){
+//     // display word is reset
+//     // alphabet disappears
+// }
 function displayWordOptions () {
         wordsContainer.innerHTML +=`<h1>Select your body parts</h1>`;
         let wordCategories = Object.keys(words);
@@ -200,6 +203,3 @@ function displayWordOptions () {
         })
     }
     displayWordOptions()
-
-
-
