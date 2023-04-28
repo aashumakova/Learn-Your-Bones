@@ -29,10 +29,6 @@ h1 {
 h1 {
     text-align: center;
 }
-/* #words-container{
-    text-align: center;
-    
-} */
 
 #words-container div {
     width: 100%;
@@ -50,8 +46,6 @@ h1 {
     padding: 1.5em 2em; 
     
 }
-
-
 
 #letter-container{
     width: 100%;
@@ -74,15 +68,3 @@ h1 {
     font-size: 3em;
 }
 
-#result-text{
-
-}
-
-button>#play-again {
-    text-align: center; 
-    /* font-size: 18px; */
-    border-radius: 3%;
-    margin: 2em;
-    padding: 0.5em;
-    border: 0.5em solid darkgray;
-}
