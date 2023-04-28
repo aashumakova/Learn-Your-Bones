@@ -33,7 +33,6 @@ playAgainButton.addEventListener('click', function(){
 letterButtonsEl.addEventListener('click', function(event) {
     const letter = event.target.textContent;
     event.target.disabled = 'true';
-    console.log('Button clicked:', letter);
     checkLetter (letter, secretWord)
 })
 
@@ -57,14 +56,12 @@ function generateWordArray(){
     const wordArray = words[categoryValue];
     secretWord = wordArray[Math.floor(Math.random() * wordArray.length)].toUpperCase();
     event.target.disabled = 'true';
-    console.log(secretWord);
     createDisplayWord()
 }
 
 function displayWordOptions () {
     wordsContainer.innerHTML +=`<h1>Select your body parts</h1>`;
     let wordCategories = Object.keys(words);
-    console.log(wordCategories)
     wordCategories.forEach(function(wordCategory){
     let wordCategoriesButton = document.createElement('div');
     wordCategoriesButton.innerHTML += `<button class="options">${wordCategory}</button>`;
@@ -77,10 +74,8 @@ function createDisplayWord(){
     for ( let i = 0; i < secretWord.length; i++) {
     displayWord[i] = 'x';
     }
-    console.log(displayWord)
-        
+            
     displayString = displayWord.join(' ');
-    console.log(displayString);
     userInputSection.innerHTML = displayString;
     renderLetters()
 }
@@ -92,10 +87,6 @@ function renderLetters() {
 function checkLetter (letter, secretWord) {
     if (secretWord.includes(letter)) {
     for ( var j = 0; j < secretWord.length; j++ ) {
-    console.log(j);
-    console.log(letter);
-    console.log(secretWord[j]);
-    console.log(secretWord)
     if (secretWord[j] === letter) {
         displayWord.splice(j, 1, letter);
         console.log(displayWord);
@@ -105,15 +96,12 @@ function checkLetter (letter, secretWord) {
         winCount +=1;
     }
     
-    console.log(winCount, 'win count');
     if (winCount === secretWord.length) {
     resultText.innerHTML = `Good job! We have a future healthcare professional here!!!`;
     }
-    
     }
     } else {
         count +=1;
-        console.log(count, 'count');
     }           
     checkEndOfGame()
 }
