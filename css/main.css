@@ -6,6 +6,9 @@
 body {
     font-family: 'Dosis', sans-serif;
     background-color: mediumaquamarine;
+    background-image: url("5999025.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 h1 {
@@ -61,10 +64,14 @@ h1 {
     width: 2.4em;
 }
 
-
 #user-input-section{
     display: flex;
     justify-content: center;
     font-size: 3em;
+}
+@media (max-width: 1000px) {
+    body {
+    background-size: 1000px 600px;
+    }
 }
 
